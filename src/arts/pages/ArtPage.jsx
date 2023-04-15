@@ -17,7 +17,7 @@ export const ArtPage = () => {
     return (
         <Container>
             <Image
-                src={`heroes/${id}.jpg`}
+                src={`/heroes/${id}.jpg`}
                 alt={hero.superhero}
                 className="animate__animated animate__fadeIn"
             />
