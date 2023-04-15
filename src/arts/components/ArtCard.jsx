@@ -21,7 +21,7 @@ export const ArtCard = ({
 }) => {
     const navigate = useNavigate();
     const [mouseOver, setMouseOver] = useState(false);
-    const heroImageUrl = `heroes/${ id }.jpg`;
+    const heroImageUrl = `/heroes/${ id }.jpg`;
 
     const onNavigateToArt = () => {
         navigate(`/obra/${ id }`);
