@@ -10,14 +10,14 @@ export const JulietaArtsRoutes = () => {
             <GeneralContainer>
                 <RoutesContainer>
                     <Routes>
-                        <Route path="" element={<HomePage />} />
-                        <Route path="esculturas" element={<SculpturesPage />} />
-                        <Route path="pinturas" element={<PaintingsPage />} />
-                        <Route path="murales" element={<MuralsPage />} />
-                        <Route path="bio" element={<BioPage />} />
-                        <Route path="contactame" element={<ContactPage />} />
-                        <Route path="obra/:id" element={<ArtPage />} />
-                        <Route path="/" element={<Navigate to="/" />} />
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/esculturas" element={<SculpturesPage />} />
+                        <Route path="/pinturas" element={<PaintingsPage />} />
+                        <Route path="/murales" element={<MuralsPage />} />
+                        <Route path="/bio" element={<BioPage />} />
+                        <Route path="/contactame" element={<ContactPage />} />
+                        <Route path="/obra/:id" element={<ArtPage />} />
+                        <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>
                 </RoutesContainer>
             </GeneralContainer>

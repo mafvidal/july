@@ -13,7 +13,7 @@ export const Navbar = () => {
         <NavbarContainer extendNavbar={extendNavbar}>
             <NavbarInnerContainer>
                 <NavbarLinkContainer>
-                    <NavbarLink to=""> Inicio</NavbarLink>
+                    <NavbarLink to="/"> Inicio</NavbarLink>
                     <NavbarLink to="/esculturas"> Esculturas</NavbarLink>
                     <NavbarLink to="/pinturas"> Pinturas</NavbarLink>
                     <NavbarLink to="/murales"> Murales</NavbarLink>
@@ -30,7 +30,7 @@ export const Navbar = () => {
 
             {extendNavbar && (
                 <NavbarExtendedContainer>
-                    <NavbarLinkExtended to="" onClick={onNavigate}> Inicio</NavbarLinkExtended>
+                    <NavbarLinkExtended to="/" onClick={onNavigate}> Inicio</NavbarLinkExtended>
                     <NavbarLinkExtended to="/esculturas" onClick={onNavigate}> Esculturas</NavbarLinkExtended>
                     <NavbarLinkExtended to="/pinturas" onClick={onNavigate}> Pinturas</NavbarLinkExtended>
                     <NavbarLinkExtended to="/murales" onClick={onNavigate}> Murales</NavbarLinkExtended>
