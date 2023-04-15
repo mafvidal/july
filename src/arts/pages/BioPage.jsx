@@ -4,7 +4,7 @@ export const BioPage = () => {
     return (
         <Container>
             <ImageContainer>
-                <Image src="/assets/intro.png" alt="intro" />
+                <Image src="intro.png" alt="intro" />
             </ImageContainer>
 
 
