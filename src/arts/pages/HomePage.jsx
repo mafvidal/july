@@ -5,7 +5,7 @@ export const HomePage = () => {
         <HomeContainer>
             <Tile>Julieta Arts</Tile>
 
-            <ImgContainer src="/assets/intro.png" alt="intro" />
+            <ImgContainer src="/intro.png" alt="intro" />
 
             <Text>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the

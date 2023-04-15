@@ -10,7 +10,7 @@ export const Footer = () => {
         <FooterContainer>
             <TextContainer>
                 <Name>Maria Julieta Fernandez Vidal</Name>
-                <EmailIcon src="/assets/email.svg" alt="image" onClick={sendEmail}/>
+                <EmailIcon src="email.svg" alt="image" onClick={sendEmail}/>
             </TextContainer>
         </FooterContainer>
     )
