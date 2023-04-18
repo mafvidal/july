@@ -78,11 +78,11 @@ export const ArtPage = () => {
 
             { renderCarousel() }
 
-            <Image
-                src={`heroes/${id}.jpg`}
-                alt={hero.superhero}
-                className="animate__animated animate__fadeIn"
-            />
+            {/*<Image*/}
+            {/*    src={`heroes/${id}.jpg`}*/}
+            {/*    alt={hero.superhero}*/}
+            {/*    className="animate__animated animate__fadeIn"*/}
+            {/*/>*/}
             <TextContainer>
                 <Title>{hero.superhero}</Title>
                 {/*<ul className="list-group list-group-flush">*/}
