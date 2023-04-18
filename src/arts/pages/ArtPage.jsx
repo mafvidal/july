@@ -79,15 +79,16 @@ export const ArtPage = () => {
                         heroes.map((hero, ind) => {
                             return (
                                 <div className={`carousel-item ${index === ind ? "active" : ""}`}>
-                                    <div
-                                        key={`item-${ind}`}
-                                        style={{width: "500px", height: "500px", backgroundColor: "green"}}
-                                    />
-                                    {/*<Image*/}
-                                    {/*    src={`heroes/${hero.id}.jpg`}*/}
-                                    {/*    alt={hero.superhero}*/}
-                                    {/*    className="animate__animated animate__fadeIn"*/}
+                                    {/*<div*/}
+                                    {/*    key={`item-${ind}`}*/}
+                                    {/*    style={{width: "500px", height: "500px", backgroundColor: "green"}}*/}
                                     {/*/>*/}
+                                    <Image
+                                        key={`item-${ind}`}
+                                        src={`heroes/${hero.id}.jpg`}
+                                        alt={hero.superhero}
+                                        className="animate__animated animate__fadeIn"
+                                    />
                                 </div>
                             )
                         })
