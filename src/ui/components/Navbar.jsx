@@ -19,7 +19,7 @@ export const Navbar = () => {
                     <NavbarLink to="/murales"> Murales</NavbarLink>
                     <NavbarLink to="/escenografia"> Escenografia</NavbarLink>
                     <NavbarLink to="/bocetos"> Bocetos</NavbarLink>
-                    <NavbarLink to="/otros"> otros</NavbarLink>
+                    <NavbarLink to="/otros"> Otros</NavbarLink>
                     <NavbarLink to="/bio"> Bio</NavbarLink>
                     <OpenLinksButton
                         onClick={() => {
