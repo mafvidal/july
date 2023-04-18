@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from "styled-components";
 import {Footer, Navbar} from '../../ui';
-import { PaintingsPage, ArtPage, SculpturesPage, MuralsPage, HomePage, BioPage, ContactPage } from '../pages';
+import { PaintingsPage, ArtPage, SculpturesPage, MuralsPage, HomePage, BioPage, ContactPage, SketchesPage, ScenographyPage, OthersPage } from '../pages';
 
 export const JulietaArtsRoutes = () => {
     return (
@@ -15,7 +15,10 @@ export const JulietaArtsRoutes = () => {
                         <Route path="/pinturas" element={<PaintingsPage />} />
                         <Route path="/murales" element={<MuralsPage />} />
                         <Route path="/bio" element={<BioPage />} />
-                        <Route path="/contactame" element={<ContactPage />} />
+                        {/*<Route path="/contactame" element={<ContactPage />} />*/}
+                        <Route path="/escenografia" element={<ScenographyPage />} />
+                        <Route path="/bocetos" element={<SketchesPage />} />
+                        <Route path="/otros" element={<OthersPage />} />
                         <Route path="/obra/:id" element={<ArtPage />} />
                         <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>

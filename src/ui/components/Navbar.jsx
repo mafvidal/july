@@ -17,6 +17,9 @@ export const Navbar = () => {
                     <NavbarLink to="/esculturas"> Esculturas</NavbarLink>
                     <NavbarLink to="/pinturas"> Pinturas</NavbarLink>
                     <NavbarLink to="/murales"> Murales</NavbarLink>
+                    <NavbarLink to="/escenografia"> Escenografia</NavbarLink>
+                    <NavbarLink to="/bocetos"> Bocetos</NavbarLink>
+                    <NavbarLink to="/otros"> otros</NavbarLink>
                     <NavbarLink to="/bio"> Bio</NavbarLink>
                     <OpenLinksButton
                         onClick={() => {
@@ -34,6 +37,9 @@ export const Navbar = () => {
                     <NavbarLinkExtended to="/esculturas" onClick={onNavigate}> Esculturas</NavbarLinkExtended>
                     <NavbarLinkExtended to="/pinturas" onClick={onNavigate}> Pinturas</NavbarLinkExtended>
                     <NavbarLinkExtended to="/murales" onClick={onNavigate}> Murales</NavbarLinkExtended>
+                    <NavbarLinkExtended to="/escenografia" onClick={onNavigate}> Escenografia</NavbarLinkExtended>
+                    <NavbarLinkExtended to="/bocetos" onClick={onNavigate}> Bocetos</NavbarLinkExtended>
+                    <NavbarLinkExtended to="/otros" onClick={onNavigate}> Otros</NavbarLinkExtended>
                     <NavbarLinkExtended to="/bio" onClick={onNavigate}> Bio</NavbarLinkExtended>
                 </NavbarExtendedContainer>
             )}
@@ -50,7 +56,7 @@ export const NavbarContainer = styled.nav`
   z-index: 10;
   display: flex;
   flex-direction: column;
-  @media (min-width: 700px) {
+  @media (min-width: 1000px) {
     height: 80px;
   }
 `;
@@ -84,7 +90,7 @@ export const NavbarLink = styled(NavLink)`
     color: black;
     font-weight: 500;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 1000px) {
     display: none;
   }
 `;
@@ -120,7 +126,7 @@ export const OpenLinksButton = styled.button`
   color: black;
   font-size: 45px;
   cursor: pointer;
-  @media (min-width: 700px) {
+  @media (min-width: 1000px) {
     display: none;
   }
 `;
@@ -129,7 +135,7 @@ export const NavbarExtendedContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 700px) {
+  @media (min-width: 1000px) {
     display: none;
   }
 `;

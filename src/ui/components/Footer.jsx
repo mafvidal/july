@@ -2,15 +2,19 @@ import styled from "styled-components";
 
 export const Footer = () => {
 
-    const sendEmail = () => {
-        window.location.href = "mailto:test@example.com"
+    const sendEmail = (where) => {
+        window.open(where)
     }
 
     return (
         <FooterContainer>
             <TextContainer>
                 <Name>Maria Julieta Fernandez Vidal</Name>
-                <EmailIcon src="email.svg" alt="image" onClick={sendEmail}/>
+                <LinksContainer>
+                    <EmailIcon src="email.svg" alt="image" onClick={() => sendEmail("mailto:test@example.com")}/>
+                    <EmailIcon src="facebook.svg" alt="image" onClick={() => sendEmail("https://www.facebook.com/july.fernandezvidalakd?mibextid=ZbWKwL")}/>
+                    <EmailIcon src="instagram.svg" alt="image" onClick={() => sendEmail("https://instagram.com/julif.vidal?igshid=YmMyMTA2M2Y=")}/>
+                </LinksContainer>
             </TextContainer>
         </FooterContainer>
     )
@@ -49,4 +53,9 @@ const Name = styled.span`
 const EmailIcon = styled.img`
   width: 20px;
   cursor: pointer;
+  margin-right: 15px;
+`;
+
+const LinksContainer = styled.div`
+    display: flex;
 `;
