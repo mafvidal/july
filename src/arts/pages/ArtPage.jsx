@@ -1,12 +1,14 @@
-import {useMemo} from 'react';
+import {useMemo, useState} from 'react';
 import {Navigate, useParams} from 'react-router-dom';
 import {getHeroById} from '../helpers';
 import styled from "styled-components";
+import {heroes} from "../data/heroes";
 
 
 export const ArtPage = () => {
 
     const {id} = useParams();
+    const [index, setIndex] = useState(0)
 
     const hero = useMemo(() => getHeroById(id), [id]);
 
@@ -14,8 +16,68 @@ export const ArtPage = () => {
         return <Navigate to="/home"/>
     }
 
+    const renderCarousel = () => {
+        return (
+            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+                <div className="carousel-indicators">
+                    {
+                        heroes.map((elem, ind) => {
+                            return (
+                                <button type="button" data-bs-target="#carouselExampleIndicators" onClick={() => setIndex(ind)}
+                                        className={`${index === ind ? "active" : ""}`} aria-current="true" aria-label="Slide 1" />
+                            )
+                        })
+                    }
+                </div>
+                <div className="carousel-inner">
+                    {
+                        heroes.map((hero, ind) => {
+                            return (
+                                <div className={`carousel-item ${index === ind ? "active" : ""}`}>
+                                    <Image
+                                        src={`heroes/${hero.id}.jpg`}
+                                        alt={hero.superhero}
+                                        className="animate__animated animate__fadeIn"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <div className="carousel-control-prev" data-bs-slide="prev" onClick={prev} style={{padding: "20px", cursor: "pointer"}}>
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </div>
+                <div className="carousel-control-next" onClick={next} data-slide="next"  style={{padding: "20px", cursor: "pointer"}}>
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </div>
+            </div>
+        )
+    }
+
+    const next = () => {
+        if (index < heroes.length - 1) {
+            setIndex(index + 1)
+        } else {
+            setIndex(0)
+        }
+    }
+
+    const prev = () => {
+        if (index > 0) {
+            setIndex(index -1)
+        } else {
+            setIndex(heroes.length - 1)
+        }
+    }
+
     return (
         <Container>
+
+
+            { renderCarousel() }
+
             <Image
                 src={`heroes/${id}.jpg`}
                 alt={hero.superhero}
