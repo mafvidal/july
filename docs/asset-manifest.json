@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/july/static/css/main.31d6cfe0.css",
-    "main.js": "/july/static/js/main.5279909d.js",
+    "main.js": "/july/static/js/main.f20b7755.js",
     "index.html": "/july/index.html",
-    "main.5279909d.js.map": "/july/static/js/main.5279909d.js.map"
+    "main.f20b7755.js.map": "/july/static/js/main.f20b7755.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.5279909d.js"
+    "static/js/main.f20b7755.js"
   ]
 }

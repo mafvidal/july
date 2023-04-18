@@ -10,29 +10,30 @@ export const ArtPage = () => {
     const {id} = useParams();
     const [index, setIndex] = useState(0);
     const timer = useRef(0);
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
+    const touchStart = useRef(null);
+    const touchEnd = useRef(null);
     const minSwipeDistance = 50;
-
 
     const hero = useMemo(() => getHeroById(id), [id]);
 
     const onTouchStart = (e) => {
-        setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
-        setTouchStart(e.targetTouches[0].clientX)
+        touchEnd.current = null;
+        touchStart.current = e.targetTouches[0].clientX;
     }
 
-    const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+    const onTouchMove = (e) => {
+        touchEnd.current = e.targetTouches[0].clientX;
+    };
 
     const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return
-        const distance = touchStart - touchEnd;
+        if (!touchStart.current || !touchEnd.current) return
+        const distance = touchStart.current - touchEnd.current;
         const isLeftSwipe = distance > minSwipeDistance;
         const isRightSwipe = distance < -minSwipeDistance;
         if (isLeftSwipe) {
-            prev();
-        } else if (isRightSwipe) {
             next();
+        } else if (isRightSwipe) {
+            prev();
         }
     }
 
