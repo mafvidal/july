@@ -12,30 +12,30 @@ const CharactersByHero = ({ alter_ego, characters}) => {
 
 
 export const ArtCard = ({
-    id,
-    superhero,
-    publisher,
-    alter_ego,
-    first_appearance,
-    characters ,
+    _id,
+    title,
+    principal,
+    category,
+    date,
+    description,
+    images
 }) => {
     const navigate = useNavigate();
     const [mouseOver, setMouseOver] = useState(false);
-    const heroImageUrl = `heroes/${ id }.jpg`;
 
     const onNavigateToArt = () => {
-        navigate(`/obra/${ id }`);
+        navigate(`/obra/${ _id }`, {state: {title, description, date, images}});
     }
 
     const renderArt = () => {
-        return <Image src={ heroImageUrl }  alt={ superhero } />;
+        return <Image src={ principal }  alt={ title } />;
     }
 
     const renderDescription = () => {
         return (
             <DescriptionContainer>
                 <Title>
-                    {superhero}
+                    {title}
                 </Title>
             </DescriptionContainer>
         );

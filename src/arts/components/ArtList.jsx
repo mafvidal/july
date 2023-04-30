@@ -1,19 +1,32 @@
-import { useMemo } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import { ArtCard } from './';
-import { getHeroesByPublisher } from '../helpers';
 import styled from "styled-components";
+import {coreApi} from "../../api/CoreApi";
 
-export const ArtList = ({ publisher }) => {
+export const ArtList = ({ category = "bocetos" }) => {
 
-    const heroes = useMemo( () => getHeroesByPublisher( publisher ), [ publisher ]);
+    const [arts, setArts] = useState([]);
+
+    const getImages = async () => {
+        const result = await coreApi.get('/art/all', {
+            params: {
+                category
+            }
+        });
+        setArts(result.data.data.arts);
+    }
+
+    useEffect(() => {
+        getImages();
+    }, []);
 
     return (
         <Container>
             {
-                heroes.map( hero => (
+                arts.map( art => (
                     <ArtCard
-                        key={ hero.id }
-                        { ...hero }
+                        key={ art._id }
+                        { ...art }
                     />
                 ))
             }

@@ -4,7 +4,7 @@ export const MuralsPage = () => {
 
   return (
       <>
-        <ArtList publisher='DC Comics' />
+        <ArtList category='murales' />
       </>
   )
 }

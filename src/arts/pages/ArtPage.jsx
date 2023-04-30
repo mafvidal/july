@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useRef, useState} from 'react';
-import {Navigate, useParams} from 'react-router-dom';
+import {Navigate, useLocation, useParams} from 'react-router-dom';
 import {getHeroById} from '../helpers';
 import styled from "styled-components";
 import {heroes} from "../data/heroes";
@@ -8,13 +8,13 @@ import {heroes} from "../data/heroes";
 export const ArtPage = () => {
 
     const {id} = useParams();
+    const {state} = useLocation();
+    const { title, description, date, images = []} = state;
     const [index, setIndex] = useState(0);
     const timer = useRef(0);
     const touchStart = useRef(null);
     const touchEnd = useRef(null);
     const minSwipeDistance = 50;
-
-    const hero = useMemo(() => getHeroById(id), [id]);
 
     const onTouchStart = (e) => {
         touchEnd.current = null;
@@ -38,13 +38,19 @@ export const ArtPage = () => {
     }
 
     useEffect(() => {
-        timer.current = window.setInterval(() => {
-            if (index < heroes.length - 1) {
-                setIndex(prev => prev + 1)
-            } else {
-                setIndex(prev => 0)
-            }
-        }, 2500);
+        if (images && images.length > 0) {
+            const l = images.length;
+            console.log("Primere imagen " + l)
+            timer.current = window.setInterval(() => {
+                setIndex(prev => {
+                    if (prev < l - 1) {
+                        return prev + 1
+                    }
+                    return 0
+                })
+            }, 2500);
+        }
+
         return () => {
             if (timer.current !== 0) {
                 window.clearInterval(timer.current);
@@ -62,7 +68,7 @@ export const ArtPage = () => {
 
     const next = () => {
         stopTimer();
-        if (index < heroes.length - 1) {
+        if (index < images.length - 1) {
             setIndex(prev => prev + 1)
         } else {
             setIndex(prev => 0)
@@ -74,7 +80,7 @@ export const ArtPage = () => {
         if (index > 0) {
             setIndex(prev => prev -1)
         } else {
-            setIndex(prev => heroes.length - 1)
+            setIndex(prev => images.length - 1)
         }
     }
 
@@ -83,7 +89,7 @@ export const ArtPage = () => {
             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
                 <div className="carousel-indicators">
                     {
-                        heroes.map((elem, ind) => {
+                        images.map((image, ind) => {
                             return (
                                 <button
                                     key={`button-${ind}`}
@@ -100,17 +106,13 @@ export const ArtPage = () => {
                 </div>
                 <div className="carousel-inner">
                     {
-                        heroes.map((hero, ind) => {
+                        images.map((image, ind) => {
                             return (
                                 <div className={`carousel-item ${index === ind ? "active" : ""}`}>
-                                    {/*<div*/}
-                                    {/*    key={`item-${ind}`}*/}
-                                    {/*    style={{width: "500px", height: "500px", backgroundColor: "green"}}*/}
-                                    {/*/>*/}
                                     <Image
                                         key={`item-${ind}`}
-                                        src={`heroes/${hero.id}.jpg`}
-                                        alt={hero.superhero}
+                                        src={image.url}
+                                        alt={title}
                                         className="animate__animated animate__fadeIn"
                                     />
                                 </div>
@@ -130,7 +132,7 @@ export const ArtPage = () => {
         )
     }
 
-    if (!hero) {
+    if (!images || images.length === 0) {
         return <Navigate to="/home"/>
     }
 
@@ -140,30 +142,32 @@ export const ArtPage = () => {
 
             { renderCarousel() }
 
-            {/*<Image*/}
-            {/*    src={`heroes/${id}.jpg`}*/}
-            {/*    alt={hero.superhero}*/}
-            {/*    className="animate__animated animate__fadeIn"*/}
-            {/*/>*/}
             <TextContainer>
-                <Title>{hero.superhero}</Title>
-                {/*<ul className="list-group list-group-flush">*/}
-                {/*  <li className="list-group-item"> <b>Alter ego:</b> { hero.alter_ego } </li>*/}
-                {/*  <li className="list-group-item"> <b>Publisher:</b> { hero.publisher } </li>*/}
-                {/*  <li className="list-group-item"> <b>First appearance:</b> { hero.first_appearance } </li>*/}
-                {/*</ul>*/}
+                <Title>{title}</Title>
 
-                <Date>2023</Date>
+                {
+                    date && (
+                        <Date>
+                            {date}
+                        </Date>
+                    )
+                }
 
-                <Description>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </Description>
-                {/*<p>{ hero.characters }</p>*/}
+                {
+                    description && (
+                        <DescriptionContainer>
+                            {
+                                description.split('\n').map((des, index) => (
+                                    <Description key={index.toString()}>
+                                        {des}
+                                    </Description>
+                                ))
+                            }
+                        </DescriptionContainer>
+
+                    )
+                }
+
 
             </TextContainer>
 
@@ -199,9 +203,13 @@ const Date = styled.span`
   color: #3f3d3d;
 `;
 
-const Description = styled.p`
+const DescriptionContainer = styled.div`
   margin-top: 30px;
+`;
+
+const Description = styled.p`
   font-family: didot, serif;
   max-width: 600px;
   text-align: center;
+  margin: 0;
 `;
